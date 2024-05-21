@@ -10,9 +10,18 @@ composer install
 npm install
 cp .env.example .env
 php artisan migrate:fresh --seed
+npx vite OR npm run build 
 ``` 
 
 After that, you're set with dummy data. Should be enough to get started.
+
+Credentials
+```
+admin@example.com - password is password
+manager@example.com - same ^^
+```
+
+Seeder user have their own restaurant attached by default. May use their account.
 
 Paypal sandbox account (.env.example has API credentials attached)
 
