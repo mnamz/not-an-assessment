@@ -2,8 +2,15 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
 
+const form = useForm({});
+
+function deleteEntry(id) {
+    if (confirm("Are you sure you want to delete")) {
+        form.delete(route('users.destroy', id));
+    }
+}
 </script>
 
 <template>
@@ -69,7 +76,7 @@ import { Link } from "@inertiajs/vue3";
                                                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
                                         </Link>
-                                        <button @click="deleteUser(user.id)" v-if="user.deleted_at == null"
+                                        <button @click="deleteEntry(user.id)" v-if="user.deleted_at == null"
                                             class="inline-flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor"

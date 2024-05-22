@@ -2,7 +2,15 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
+
+const form = useForm({});
+
+function deleteEntry(id) {
+    if (confirm("Are you sure you want to delete")) {
+        form.delete(route('products.destroy', id));
+    }
+}
 
 </script>
 
@@ -58,7 +66,7 @@ import { Link } from "@inertiajs/vue3";
 
                                 <td class="px-6 py-4 text-center whitespace-nowrap">
                                     <div class="flex items-center justify-center space-x-2">
-                                        <Link :href="route('products.show', { id: item.id, })">
+                                        <Link :href="route('products.edit', { id: item.id, })">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-500">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -67,7 +75,7 @@ import { Link } from "@inertiajs/vue3";
                                                 d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
                                         </Link>
-                                        <button @click="deleteLeave(item.id)" v-if="item.deleted_at == null"
+                                        <button @click="deleteEntry(item.id)" v-if="item.deleted_at == null"
                                             class="inline-flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor"

@@ -6,6 +6,7 @@ use App\Http\Resources\ItemResource;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class ItemController extends Controller
@@ -67,24 +68,39 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Item $item)
+    public function edit(Item $item, $id)
     {
-        //
+        $item = Item::findOrFail($id);
+        return Inertia::render('Product/Edit', [
+            'product' => $item,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'details' => $request->details,
+        ]);
+
+        return redirect()->back()->banner('Item: ' . $item->name . ' has been updated');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        //
+        Log::info($id);
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return redirect()->back()->banner('Item: ' . $item->name . ' has been deleted');
     }
 }

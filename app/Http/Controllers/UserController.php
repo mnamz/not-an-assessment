@@ -51,4 +51,12 @@ class UserController extends Controller
         return redirect()->back()->banner('User: ' . $user->name . ' has been updated');
     }
 
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->back()->banner('User: ' . $user->name . ' has been deleted');
+    }
+
 }

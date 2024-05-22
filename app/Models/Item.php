@@ -23,6 +23,6 @@ class Item extends Model
 
     public function getCreatedAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('F j, Y, g:i a');
+        return Carbon::parse($this->created_at)->format('F j, Y, g:i a');
     }
 }
