@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, reactive } from 'vue';
 import axios from 'axios';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import ItemModal from '@/Components/ItemModal.vue';
 import Swal from 'sweetalert2';
 
@@ -115,8 +115,9 @@ onMounted(() => {
             </div>
         </div>
     </div>
+    <Link :href="route('cart')">
     <div class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4">
-        <h3>Cart</h3>
+        <h3>Go to Cart</h3>
         <div v-for="(items, restaurantId) in segmentedCart" :key="restaurantId">
             <h4>{{ restaurantId }}</h4>
             <ul>
@@ -124,6 +125,7 @@ onMounted(() => {
             </ul>
         </div>
     </div>
+    </Link>
     <ItemModal :is-open="isModalOpen" :item="selectedItem" :addToCart="addToCart" @close="closeModal" />
 </template>
 

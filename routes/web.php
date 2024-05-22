@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('/cart', function () {
     return Inertia::render('Home/Cart');
-});
+})->name('cart');
 
 Route::get('/success', [PaypalController::class, 'success'])->name('success');
 Route::get('/cancel', function () {
