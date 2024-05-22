@@ -54,7 +54,7 @@ const submitForm = () => {
                                             required>
                                         <InputError class="mt-2" :message="form.errors.price" />
                                     </div>
-                                    <div class="col-span-fuebll">
+                                    <div class="col-span-full">
                                         <label for="details"
                                             class="block text-sm font-medium leading-6 text-neutral-50">Details</label>
                                         <textarea id="details" name="details" rows="3" v-model="form.details"
