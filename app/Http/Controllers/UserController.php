@@ -14,12 +14,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        // dd(Auth::user()->restaurant->id);
         $users = User::with('restaurant')->get();
-        // dd($users);
 
         if ($request->expectsJson()) {
-            // ...
+            return response()->json([
+                'data' => $users,
+            ]);    
         } else {
             return Inertia::render('User/Index', [
                 'users' => $users,

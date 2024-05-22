@@ -2,6 +2,8 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Category;
+use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -25,11 +27,22 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
-
-        return User::create([
+// dd($input['categories']);
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'phone' => $input['phone'],
         ])->assignRole('manager');
+
+        $categories = explode(',', $input['categories']);
+        Restaurant::create([
+            'name' => $input['restaurant'],
+            'categories' => $categories,
+            'location' => $input['location'],
+            'user_id' => $user->id,
+        ]);
+
+        return $user;
     }
 }

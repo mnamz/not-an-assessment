@@ -16,12 +16,13 @@ import { Link } from "@inertiajs/vue3";
         </template>
         <div class="py-3 px-6">
             <div class="flex flex-col">
-                <div class="py-4 flex justify-start ">
+                <!-- Use /register please. Then change user status here -->
+                <!-- <div class="py-4 flex justify-start ">
                     <Link :href="route('users.create')">
                     <PrimaryButton class="mb-3 dark:bg-blue-500 text-white hover:bg-blue-600 "> Add User
                     </PrimaryButton>
                     </Link>
-                </div>
+                </div> -->
                 <div class="flex justify-center items-center shadow border-b border-gray-200 sm:rounded-lg">
                     <table class="w-full">
                         <!-- Table Header -->
