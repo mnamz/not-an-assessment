@@ -21,7 +21,7 @@ admin@example.com - password is password
 manager@example.com - same ^^
 ```
 
-Seeder user have their own restaurant attached by default. May use their account.
+Seeder user have their own restaurant attached by default. May use their account. All users password is `password`
 
 Paypal sandbox account (.env.example has API credentials attached)
 
