@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-use function Termwind\render;
-
 class ItemController extends Controller
 {
     /**
@@ -21,7 +19,7 @@ class ItemController extends Controller
             $items = Item::with('restaurant')->get();
             return ItemResource::collection($items);
         } else {
-            $items = Auth::user()->hasRole('admin') ? Item::with('restaurant')->get() : Item::where('restaurant_id', Auth::user()->restaurant->id)->with('restaurant')->get();
+            $items = Auth::user()->hasRole('admin') ? Item::with('restaurant')->get() : Item::where('restaurant_id', Auth::user()->restaurant?->id)->with('restaurant')->get();
             return Inertia::render('Product/Index', [
                 'products' => $items,
             ]);

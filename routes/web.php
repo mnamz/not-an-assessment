@@ -41,7 +41,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    Route::middleware(['role:admin|manager'])->group(function () {
+    Route::middleware(['role:admin|manager', 'status'])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('orders', OrderController::class);
         Route::resource('products', ItemController::class);
@@ -49,11 +49,5 @@ Route::middleware([
 
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
-        Route::get('/send_notifications', function () {
-            $users = User::all();
-            return Inertia::render('SendNotification', [
-                'users' => $users
-            ]);
-        });
     });
 });
